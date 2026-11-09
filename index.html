@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandrs Čaks — Mana Rīga</title>
+  <style>
+    :root {
+      --paper: #f5f0e7;
+      --ink: #252321;
+      --muted: #6d665e;
+      --red: #9d342e;
+      --line: #d9cfc1;
+      --card: #fffaf2;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+    .topline {
+      height: 7px;
+      background: var(--red);
+    }
+    header {
+      padding: 22px 7vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    header a { color: var(--ink); text-decoration: none; }
+    .hero {
+      min-height: 490px;
+      padding: 80px 7vw 70px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      align-items: center;
+      gap: 50px;
+      overflow: hidden;
+    }
+    .eyebrow {
+      color: var(--red);
+      font: bold 12px Arial, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      margin: 18px 0;
+      font-weight: 500;
+    }
+    .hero p { max-width: 570px; font-size: 19px; color: var(--muted); }
+    .hero-art {
+      position: relative;
+      min-height: 320px;
+      border: 1px solid #c8b9a5;
+      background:
+        linear-gradient(160deg, transparent 0 54%, #c8b9a5 54.2% 55%, transparent 55.2%),
+        linear-gradient(90deg, transparent 0 18%, #d8cbbb 18.2% 19%, transparent 19.2% 80%, #d8cbbb 80.2% 81%, transparent 81.2%),
+        #e8dfd2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-art::before {
+      content: "RĪGA";
+      position: absolute;
+      font: bold clamp(40px, 6vw, 72px) Arial, sans-serif;
+      letter-spacing: .16em;
+      color: rgba(157, 52, 46, .13);
+      transform: rotate(-90deg);
+      right: -10px;
+      top: 40%;
+    }
+    .quote {
+      position: relative;
+      z-index: 1;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 32px 28px;
+      width: 78%;
+      box-shadow: 12px 12px 0 rgba(65, 48, 30, .08);
+    }
+    .quote .big { color: var(--red); font-size: 48px; line-height: .7; }
+    .quote p { font-size: 20px; font-style: italic; margin: 12px 0; }
+    .quote small { font: 11px Arial, sans-serif; color: var(--muted); letter-spacing: .1em; }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 25px;
+      padding: 16px 7vw;
+      background: #e9dfd2;
+      font: 12px Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    nav a { color: var(--ink); text-decoration: none; }
+    nav a:hover { color: var(--red); }
+    section { padding: 70px 7vw; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+    .number { color: var(--red); font: bold 12px Arial, sans-serif; }
+    h2 { font-size: clamp(30px, 4vw, 46px); font-weight: 500; margin: 0; letter-spacing: -.03em; }
+    .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
+    .bio-grid p { margin-top: 0; font-size: 17px; }
+    .note {
+      padding: 25px;
+      background: var(--card);
+      border-left: 3px solid var(--red);
+      color: var(--muted);
+    }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .fact {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 26px;
+      min-height: 230px;
+    }
+    .fact span { color: var(--red); font: bold 12px Arial, sans-serif; letter-spacing: .12em; }
+    .fact h3 { font-size: 23px; line-height: 1.2; margin: 18px 0 12px; font-weight: 500; }
+    .fact p { color: var(--muted); margin: 0; }
+    .riga {
+      background: #2b2927;
+      color: #f5f0e7;
+    }
+    .riga .section-head { border-color: #514b45; }
+    .riga .number { color: #d9877e; }
+    .riga p { max-width: 760px; font-size: 19px; color: #d6cec4; }
+    .riga .riga-tag {
+      display: inline-block; border: 1px solid #74675e; padding: 7px 12px;
+      font: 11px Arial, sans-serif; letter-spacing: .15em; text-transform: uppercase;
+      margin: 8px 8px 0 0;
+    }
+    .choice { max-width: 850px; font-size: 18px; }
+    .sources { display: flex; flex-wrap: wrap; gap: 12px; }
+    .sources a {
+      color: var(--red); border: 1px solid var(--line); padding: 10px 14px;
+      text-decoration: none; font: 12px Arial, sans-serif;
+    }
+    .sources a:hover { background: var(--card); }
+    footer {
+      padding: 25px 7vw; border-top: 1px solid var(--line);
+      color: var(--muted); font: 11px Arial, sans-serif;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding-top: 55px; gap: 28px; }
+      .hero-art { min-height: 250px; }
+      .bio-grid, .facts { grid-template-columns: 1fr; }
+      section { padding-top: 52px; padding-bottom: 52px; }
+      header { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <a href="#sakums">Mana Rīga · Dzejnieks digitālajā tīklā</a>
+    <span>Latviešu literatūra / 01</span>
+  </header>
+
+  <main>
+    <section class="hero" id="sakums">
+      <div>
+        <div class="eyebrow">Rīgas dzejnieks · 1901–1950</div>
+        <h1>Aleksandrs<br>Čaks</h1>
+        <p>Dzejnieks, kurš parādīja, ka arī pilsētas ielas, cilvēki un ikdienas mirkļi var kļūt par dzeju.</p>
+      </div>
+      <div class="hero-art" aria-label="Stilizēts Rīgas pilsētas attēls">
+        <div class="quote">
+          <div class="big">“</div>
+          <p>Rīga kā iedvesma, pilsēta kā dzejas pasaule.</p>
+          <small>MANA RĪGA · ALEKSANDRS ČAKS</small>
+        </div>
+      </div>
+    </section>
+
+    <nav aria-label="Lapas izvēlne">
+      <a href="#biografija">Biogrāfija</a>
+      <a href="#fakti">Interesanti fakti</a>
+      <a href="#riga">Čaks un Rīga</a>
+      <a href="#izvele">Mana izvēle</a>
+      <a href="#avoti">Avoti</a>
+    </nav>
+
+    <section id="biografija">
+      <div class="section-head"><span class="number">01</span><h2>Biogrāfija</h2></div>
+      <div class="bio-grid">
+        <div>
+          <p>Aleksandrs Čaks (īstajā vārdā Aleksandrs Čadarainis) bija latviešu dzejnieks un rakstnieks. Viņš dzimis 1901. gada 27. oktobrī Rīgā.</p>
+          <p>Čaks kļuva pazīstams ar savu īpašo dzejas stilu. Viņš rakstīja par pilsētu, tās ielām, cilvēkiem un ikdienas dzīvi. Viņa dzejā Rīga ir dzīva un pilna dažādu noskaņu.</p>
+        </div>
+        <aside class="note">
+          <strong>Vai zināji?</strong><br>
+          Čaka dzejā parādās ne tikai skaistā un romantiskā Rīga, bet arī tās parastā, skaļā un reizēm skarbā ikdiena.
+        </aside>
+      </div>
+    </section>
+
+    <section id="fakti">
+      <div class="section-head"><span class="number">02</span><h2>3 interesanti fakti</h2></div>
+      <div class="facts">
+        <article class="fact">
+          <span>FAKTS / 01</span>
+          <h3>Vārds un pseidonīms</h3>
+          <p>Dzejnieka īstais vārds bija Aleksandrs Čadarainis. Literatūrā viņš pazīstams kā Aleksandrs Čaks.</p>
+        </article>
+        <article class="fact">
+          <span>FAKTS / 02</span>
+          <h3>„Mana paradīze”</h3>
+          <p>1932. gadā iznāca viņa dzejoļu krājums „Mana paradīze”, kurā īpaši jūtama pilsētas dzīve.</p>
+        </article>
+        <article class="fact">
+          <span>FAKTS / 03</span>
+          <h3>Latviešu strēlnieki</h3>
+          <p>Čaks rakstīja arī par latviešu strēlniekiem. Viens no nozīmīgiem viņa darbiem ir „Mūžības skartie”.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="riga" id="riga">
+      <div class="section-head"><span class="number">03</span><h2>Čaks un Rīga</h2></div>
+      <p>Aleksandram Čakam Rīga bija ļoti svarīga. Viņš rakstīja par pilsētas ielām, pagalmiem, tramvajiem un cilvēkiem. Viņa dzeja ļauj paskatīties uz Rīgu ar dzejnieka acīm un pamanīt skaistumu ikdienā.</p>
+      <div>
+        <span class="riga-tag">Pilsētas ielas</span>
+        <span class="riga-tag">Cilvēki</span>
+        <span class="riga-tag">Ikdienas dzīve</span>
+        <span class="riga-tag">Rīgas noskaņa</span>
+      </div>
+    </section>
+
+    <section id="izvele">
+      <div class="section-head"><span class="number">04</span><h2>Kāpēc es viņu izvēlējos?</h2></div>
+      <p class="choice">Es izvēlējos Aleksandru Čaku, jo man patīk Rīga un tās ielas. Man šķita interesanti, ka dzejnieks var rakstīt par parastiem cilvēkiem un pilsētas ikdienu. Viņa darbi palīdz labāk iepazīt Rīgu un tās vēsturi.</p>
+    </section>
+
+    <section id="avoti">
+      <div class="section-head"><span class="number">05</span><h2>Informācijas avoti</h2></div>
+      <div class="sources">
+        <a href="https://kulturaskanons.lv/en/archive/aleksandrs-caks/" target="_blank" rel="noopener">Latvijas Kultūras kanons ↗</a>
+        <a href="https://www.literatura.lv/" target="_blank" rel="noopener">Literatura.lv ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Mana Rīga · Aleksandrs Čaks</span>
+    <span>Skolas projekts · 2026</span>
+  </footer>
+</body>
+</html>
